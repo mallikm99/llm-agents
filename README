@@ -3,8 +3,8 @@
 pip install llama-index-llms-anthropic -q
 pip install llama-index -q
 
-#Get API keys from Claude
-#Get API keys from https://site.financialmodelingprep.com/developer/ (you can sign in with Google to get API Key - API Key under Dashboard)
+#Get API key from Claude
+#Get API key from https://site.financialmodelingprep.com/developer/ (you can sign in with Google to get API Key - API Key under Dashboard)
  
 #export the env variables needed for the python script
 CLAUDE_API_KEY 
