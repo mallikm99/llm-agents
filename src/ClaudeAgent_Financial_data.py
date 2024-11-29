@@ -32,8 +32,8 @@
 # In[2]:
 
 
-#!pip install llama-index-llms-anthropic -q
-#!pip install llama-index -q
+# !pip install llama-index-llms-anthropic -q
+# !pip install llama-index -q
 
 # In[8]:
 
@@ -58,9 +58,9 @@ nest_asyncio.apply()
 
 # In[9]:
 
-
 CLAUDE_API_KEY = os.environ.get('CLAUDE_API_KEY')
 FINANCIAL_MODELING_PREP_API_KEY = os.environ.get('FINANCIAL_MODELING_PREP_API_KEY')
+# print(CLAUDE_API_KEY, FINANCIAL_MODELING_PREP_API_KEY)
 
 # “Data provided by Financial Modeling Prep”
 # 
@@ -86,6 +86,7 @@ llm_anthropic = Anthropic(model="claude-3-5-sonnet-20240620", api_key=CLAUDE_API
 import os
 import requests
 
+
 # Define the functions that will fetch financial data
 def get_stock_price(symbol):
     """
@@ -102,9 +103,11 @@ def get_stock_price(symbol):
         eps = data[0]['eps']
         pe = data[0]['pe']
         earningsAnnouncement = data[0]['earningsAnnouncement']
-        return {"symbol": symbol.upper(), "price": price, "volume":volume,"priceAvg50":priceAvg50, "priceAvg200":priceAvg200, "EPS":eps, "PE":pe, "earningsAnnouncement":earningsAnnouncement }
+        return {"symbol": symbol.upper(), "price": price, "volume": volume, "priceAvg50": priceAvg50,
+                "priceAvg200": priceAvg200, "EPS": eps, "PE": pe, "earningsAnnouncement": earningsAnnouncement}
     except (IndexError, KeyError):
         return {"error": f"Could not fetch price for symbol: {symbol}"}
+
 
 ## DATA PROVIDED BY THIS ENDPOINT:
 # [{'symbol': 'AAPL',
@@ -152,12 +155,13 @@ def get_company_financials(symbol):
             "industry": results["industry"],
             "sector": results["sector"],
             "website": results["website"],
-            "beta":results["beta"],
-            "price":results["price"],
+            "beta": results["beta"],
+            "price": results["price"],
         }
         return financials
     except (IndexError, KeyError):
         return {"error": f"Could not fetch financials for symbol: {symbol}"}
+
 
 ## DATA PROVIDED BY THIS ENDPOINT:
 # [{'symbol': 'AAPL',
@@ -226,6 +230,7 @@ def get_income_statement(symbol):
         return data, financials
 
     return {"error": f"Could not fetch financials for symbol: {symbol}"}
+
 
 # DATA PROVIDED BY THIS ENDPOINT:
 # 'date': '2023-09-30',
@@ -299,15 +304,15 @@ agent = FunctionCallingAgent.from_tools(
 # In[43]:
 
 
-#query= "Give me the current price of Snowflake"
-#response = agent.chat(query)
-#print(str(response))
+# query= "Give me the current price of Snowflake"
+# response = agent.chat(query)
+# print(str(response))
 
 # In[34]:
 
-#query= "What was the last revenue reported by Snowflake?"
-#response = agent.chat(query)
-#print(str(response))
+# query= "What was the last revenue reported by Snowflake?"
+# response = agent.chat(query)
+# print(str(response))
 
 # # ChatBot using Anthropic Agent:
 
@@ -315,10 +320,10 @@ agent = FunctionCallingAgent.from_tools(
 
 
 while True:
-  user_input = input("\nQuery [type exit or quit to exit the chat]:=> ")
-  if user_input.lower() in ["exit", "quit"]:
-    print("Assistant: Thanks for using the chatbot!")
-    break
+    user_input = input("\nQuery [type exit or quit to exit the chat]:=> ")
+    if user_input.lower() in ["exit", "quit"]:
+        print("Assistant: Thanks for using the chatbot!")
+        break
 
-  response = agent.chat(user_input)
-  print(str(response))
+    response = agent.chat(user_input)
+    print(str(response))
