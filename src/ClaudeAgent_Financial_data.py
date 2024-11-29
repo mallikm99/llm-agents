@@ -60,7 +60,8 @@ nest_asyncio.apply()
 
 CLAUDE_API_KEY = os.environ.get('CLAUDE_API_KEY')
 FINANCIAL_MODELING_PREP_API_KEY = os.environ.get('FINANCIAL_MODELING_PREP_API_KEY')
-# print(CLAUDE_API_KEY, FINANCIAL_MODELING_PREP_API_KEY)
+print("Claude API Key = ",CLAUDE_API_KEY)
+print("Financial Modeling API Key = ", FINANCIAL_MODELING_PREP_API_KEY)
 
 # “Data provided by Financial Modeling Prep”
 # 
