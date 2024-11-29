@@ -22,7 +22,7 @@ def get_etf_list():
     """
     Retrieve a list of all Exchange Traded Funds (ETFs).
     """
-    url = f'https://financialmodelingprep.com/api/v3/etf/list?apikey={API_KEY}'
+    url = f'https://financialmodelingprep.com/api/v3/etf/list?apikey={API_KEY}&limit=10'
     return fetch_data(url)
 
 def get_financial_statement_symbols():
