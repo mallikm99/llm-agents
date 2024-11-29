@@ -43,7 +43,7 @@ from llama_index.core.tools import FunctionTool
 
 import nest_asyncio
 
-from src.data_utils import load_functions_from_directory
+from utils.data_utils import load_functions_from_directory
 
 nest_asyncio.apply()
 
@@ -85,7 +85,6 @@ llm_anthropic = Anthropic(model="claude-3-5-sonnet-20240620", api_key=CLAUDE_API
 # In[22]:
 
 
-import os
 import requests
 
 # Define the functions that will fetch financial data
