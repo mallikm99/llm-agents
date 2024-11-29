@@ -324,6 +324,6 @@ while True:
     if user_input.lower() in ["exit", "quit"]:
         print("Assistant: Thanks for using the chatbot!")
         break
-
-    response = agent.chat(user_input)
-    print(str(response))
+    if user_input.lower() != "" :
+        response = agent.chat(user_input)
+        print(str(response))
