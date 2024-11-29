@@ -43,6 +43,8 @@ from llama_index.core.tools import FunctionTool
 
 import nest_asyncio
 
+from src.data_utils import load_functions_from_directory
+
 nest_asyncio.apply()
 
 #   Other endpoints are not free:
@@ -280,6 +282,9 @@ tool_stock_price = FunctionTool.from_defaults(fn=get_stock_price)
 tool_company_financials = FunctionTool.from_defaults(fn=get_company_financials)
 tool_income_statement = FunctionTool.from_defaults(fn=get_income_statement)
 
+dynamic_tools = load_functions_from_directory("functions")
+static_tools = [tool_income_statement, tool_company_financials, tool_stock_price]
+all_tools = dynamic_tools + static_tools
 # ## Create Anthropic Agent by incorporating the predefined tools:
 
 # In[42]:
@@ -288,7 +293,7 @@ tool_income_statement = FunctionTool.from_defaults(fn=get_income_statement)
 from llama_index.core.agent import FunctionCallingAgent
 
 agent = FunctionCallingAgent.from_tools(
-    [tool_stock_price, tool_company_financials, tool_income_statement],
+    all_tools,
     llm=llm_anthropic,
     verbose=False,
     allow_parallel_tool_calls=False,
